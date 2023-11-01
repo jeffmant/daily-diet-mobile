@@ -22,8 +22,8 @@ export default {
   FONT_SIZE: {
     sm: 12,
     xsm: 14,
-    medium: 16,
-    xmedium: 18,
+    md: 16,
+    xmd: 18,
     lg: 24,
     xlg: 32,
   }
