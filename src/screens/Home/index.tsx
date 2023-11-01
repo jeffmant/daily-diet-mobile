@@ -4,11 +4,13 @@ import { Percent } from '../../components/Percent'
 import { ButtonIcon } from '../../components/ButtonIcon' 
 import { MealList } from '../../components/MealList'
 import { useNavigation } from '@react-navigation/native'
+import { MealType } from '../../components/Meal/meal.type'
 
 export function Home () {
   const { navigate } = useNavigation()
 
   const type = 'PRIMARY'
+  const data = new Map<string, MealType[]>() // Map { 'DD.MM.YYY': [ { ... }, ... ] }
   
   function handleOpenDetails () {
     navigate('details', { type })
@@ -23,7 +25,7 @@ export function Home () {
 
       <ButtonIcon title='Nova Refeição' type={type} icon='add' />
 
-      <MealList />
+      <MealList meals={data} />
     </Container> 
   )
 }
