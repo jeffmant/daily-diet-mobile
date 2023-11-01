@@ -3,11 +3,11 @@ import styled, { css } from "styled-components/native";
 
 export type ButtonStyleTypeProps = 'PRIMARY' | 'SECONDARY';
 
-export type TextStyleTypeProps = 'PRIMARY' | 'SECONDARY';
-
 type ButtonStyleProps = {
   type: ButtonStyleTypeProps
 }
+
+export type TextStyleTypeProps = 'PRIMARY' | 'SECONDARY';
 
 type TextStyleProps = {
   type: TextStyleTypeProps
@@ -21,17 +21,27 @@ export const Container = styled(TouchableOpacity)<ButtonStyleProps>`
    
   min-width: 115px;
   min-height: 50px;
+  margin: 8px 0px;
   padding: 16px 24px;
 
   border-radius: 6px;
+
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 8px;
 `
 
 export const TextButton = styled(Text)<TextStyleProps>`
   ${({ theme, type }) => css`
     font-family: ${theme.FONT_FAMILY.bold};
     font-size: ${theme.FONT_SIZE.xsm}px;
-    color: ${type === 'PRIMARY' ? theme.COLORS.white : theme.COLORS.gray1}
+    color: ${type === 'PRIMARY' ? theme.COLORS.white : theme.COLORS.gray1};
   `}
+`
+
+export const Icon = styled.View`
+  width: 18px;
+  height: 18px;
+  color: ${({ theme }) => theme.COLORS.white}
 `
