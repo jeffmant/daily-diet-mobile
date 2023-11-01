@@ -20,8 +20,8 @@ export default {
     bold: 'NunitoSans_700Bold'
   },
   FONT_SIZE: {
-    xsm: 12,
-    sm: 14,
+    sm: 12,
+    xsm: 14,
     medium: 16,
     xmedium: 18,
     lg: 24,
