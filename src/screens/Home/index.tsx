@@ -7,7 +7,7 @@ export function Home () {
     <Container>
       <Header />
 
-      <Percent />
+      <Percent type='PRIMARY' />
     </Container>
   )
 }

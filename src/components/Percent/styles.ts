@@ -1,7 +1,14 @@
 import styled, { css } from "styled-components/native";
 import { ArrowUpRight } from "phosphor-react-native"
+import { View, ViewProps } from "react-native";
 
-export const Container = styled.View`
+export type PercentStyleTypeProps = 'PRIMARY' | 'SECONDARY';
+
+type PercentStyleProps = ViewProps & {
+  type: PercentStyleTypeProps
+}
+
+export const Container = styled(View)<PercentStyleProps>`
   width: 100%;
   padding: 20px 16px;
   margin: 32px 0px;
@@ -10,7 +17,7 @@ export const Container = styled.View`
   align-items: center;
 
 
-  background-color: ${({ theme }) => theme.COLORS.greenLight};
+  background-color: ${({ theme, type }) => type === 'PRIMARY' ? theme.COLORS.greenLight : theme.COLORS.redLight};
   border-radius: 8px;
 `;
 
@@ -36,9 +43,9 @@ export const Subtitle = styled.Text`
   `}
 `
 
-export const Icon = styled(ArrowUpRight).attrs(({ theme }) => ({
-  color: theme.COLORS.greenDark
-}))`
+export type IconStyleTypeProps = ''
+
+export const Icon = styled(ArrowUpRight)`
   position: absolute;
   top: 0;
   right: 0;

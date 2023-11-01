@@ -1,15 +1,18 @@
-import { Container, Icon, Subtitle, TextContainer, Title } from "./styles";
+import { ViewProps } from "react-native";
+import { Container, Icon, PercentStyleTypeProps, Subtitle, TextContainer, Title } from "./styles";
+import { useTheme } from "styled-components/native";
 
-export function Percent () {
+type PercentProps = ViewProps & {
+  type: PercentStyleTypeProps
+}
+
+export function Percent ({ type, ...rest }: PercentProps) {
+  const { COLORS } = useTheme()
   return (
-    
-    <>
-    <Container>
+    <Container type={type} {...rest}>
         <Title>90,86%</Title>
         <Subtitle>das refeições dentro da dieta</Subtitle>
-      <Icon />
+      <Icon color={type === 'PRIMARY' ? COLORS.greenDark : COLORS.redDark} />
     </Container>
-    
-    </>
   )
 }
