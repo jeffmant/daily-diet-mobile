@@ -1,14 +1,14 @@
 import styled, { css } from "styled-components/native";
 import { ArrowUpRight } from "phosphor-react-native"
-import { View, ViewProps } from "react-native";
+import { TouchableOpacity, TouchableOpacityProps, View, ViewProps } from "react-native";
 
 export type PercentStyleTypeProps = 'PRIMARY' | 'SECONDARY';
 
-type PercentStyleProps = ViewProps & {
+type PercentStyleProps = TouchableOpacityProps & {
   type: PercentStyleTypeProps
 }
 
-export const Container = styled(View)<PercentStyleProps>`
+export const Container = styled(TouchableOpacity)<PercentStyleProps>`
   width: 100%;
   padding: 20px 16px;
   margin: 32px 0px;
