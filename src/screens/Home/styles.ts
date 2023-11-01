@@ -10,5 +10,14 @@ export const Title = styled.Text`
   ${({ theme }) => css`
     font-family: ${theme.FONT_FAMILY.bold};
     font-size: ${theme.FONT_SIZE.lg}px;
+    color: ${theme.COLORS.gray1};
+  `}
+`;
+
+export const Subtitle = styled.Text`
+  ${({ theme }) => css`
+    font-family: ${theme.FONT_FAMILY.bold};
+    font-size: ${theme.FONT_SIZE.md}px;
+    color: ${theme.COLORS.gray1};
   `}
 `;
