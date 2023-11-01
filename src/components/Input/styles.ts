@@ -1,7 +1,7 @@
-import { TextInput, TextInputProps } from "react-native";
+import { TextInput } from "react-native";
 import styled, { css } from "styled-components/native";
 
-export type InputStyleFilledProps = TextInputProps & {
+export type InputStyleFilledProps = {
   filled: boolean
 }
 
@@ -19,6 +19,6 @@ export const InputText = styled.Text`
   ${({ theme }) => css`
     font-family: ${ theme.FONT_FAMILY.regular };
     color: ${ theme.COLORS.gray1 };
-    font-size: ${theme.FONT_SIZE.medium}px;
+    font-size: ${theme.FONT_SIZE.md}px;
   `}
 `

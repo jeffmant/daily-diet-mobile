@@ -1,4 +1,4 @@
-import { View, ViewProps } from "react-native";
+import { View, ViewStyle } from "react-native";
 import styled, { css } from "styled-components/native";
 
 export const Container = styled.View`
@@ -41,7 +41,7 @@ export const Title = styled.Text`
 
 export type StatusIconStyleTypeProps = 'PRIMARY' | 'SECONDARY';
 
-type StatusIconStyleProps = ViewProps & {
+type StatusIconStyleProps = ViewStyle & {
   type: StatusIconStyleTypeProps
 }
 

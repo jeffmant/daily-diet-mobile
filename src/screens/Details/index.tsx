@@ -13,7 +13,7 @@ export function Details ({ route, ...rest }: DetailsProps) {
   const { type } = route?.params as { type?: 'PRIMARY' | 'SECONDARY'}
 
   return (
-    <Container type={type}>
+    <Container type={type} { ...rest }>
       <DetailsHeader type={type} />
       <Content>
         <Text>Details Header</Text>

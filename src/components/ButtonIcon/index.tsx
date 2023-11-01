@@ -1,5 +1,5 @@
 import { ButtonProps } from "react-native";
-import { ButtonStyleTypeProps, Container, Icon, TextButton } from "./styles";
+import { ButtonStyleTypeProps, Container, TextButton } from "./styles";
 import { Plus, PencilSimpleLine, Trash } from 'phosphor-react-native';
 
 type IconType = 'add' | 'edit' | 'delete';
