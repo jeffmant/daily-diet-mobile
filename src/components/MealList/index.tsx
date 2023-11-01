@@ -3,6 +3,7 @@ import { Container, Title } from "./styles";
 import { Meal } from "../Meal";
 import { formatDate } from "../../utils/date.util";
 import { MealType } from "../Meal/meal.type";
+import { ListEmpty } from "../ListEmpty";
 
 const makeRandomId = () => Math.floor(Math.random() * 10000).toString()
 
@@ -35,6 +36,15 @@ export function MealList () {
         </Container>
       )}
       showsVerticalScrollIndicator={false}
+      ListEmptyComponent={() => (
+        <ListEmpty 
+          message="Você ainda não cadastrou refeições."
+        /> 
+      )}
+      contentContainerStyle={[
+        { paddingBottom: 100 },
+        dailiesMap.size === 0 && { flex: 1 }
+      ]}
     />
   )
 }
