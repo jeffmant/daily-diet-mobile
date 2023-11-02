@@ -1,9 +1,7 @@
-import { Button, Text, ViewProps } from "react-native";
-import { Header } from "../../components/Header";
-import { Container, Content } from "./styles";
-import { ParamListBase, Route, RouteProp, useNavigation } from "@react-navigation/native";
+import { ViewProps } from "react-native";
+import { Card, CardSubtitle, CardTitle, Container, Content, InfoContainer, Title } from "./styles";
+import { ParamListBase, RouteProp } from "@react-navigation/native";
 import { DetailsHeader } from "../../components/DetailsHeader";
-import { DetailsHeaderStyleTypeProps } from "../../components/DetailsHeader/styles";
 
 type DetailsProps = ViewProps & {
   route?: RouteProp<ParamListBase>
@@ -16,7 +14,37 @@ export function Details ({ route, ...rest }: DetailsProps) {
     <Container type={type} { ...rest }>
       <DetailsHeader type={type} />
       <Content>
-        <Text>Details Header</Text>
+        <Title>Estatísticas gerais</Title>
+        <Card>
+          <CardTitle>22</CardTitle>
+          <CardSubtitle>
+            melhor sequência de pratos dentro da dieta
+          </CardSubtitle>
+        </Card>
+
+        <Card>
+          <CardTitle>109</CardTitle>
+          <CardSubtitle>
+            refeições registradas
+          </CardSubtitle>
+        </Card>
+
+        <InfoContainer>
+          <Card type="PRIMARY">
+            <CardTitle>99</CardTitle>
+            <CardSubtitle>
+              refeições dentro da {'\n'} 
+              dieta
+            </CardSubtitle>
+          </Card>
+          <Card type="SECONDARY">
+            <CardTitle>10</CardTitle>
+            <CardSubtitle>
+              refeições fora da {'\n'}
+              dieta
+            </CardSubtitle>
+          </Card>
+        </InfoContainer>
       </Content>
     </Container>
   )
