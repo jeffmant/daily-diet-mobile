@@ -13,7 +13,14 @@ export function MealList ({ meals }: { meals: Map<string, MealType[]> }) {
           <Title>{item[0]}</Title>
           {
             item[1].map(meal => (
-              <Meal key={meal.id} title={meal.title} date={meal.date} status={meal.status} />
+              <Meal 
+                key={meal.id}
+                id={meal.id}
+                title={meal.title}
+                description={meal.description} 
+                date={meal.date} 
+                status={meal.status}
+              />
             ))
           }  
         </Container>
