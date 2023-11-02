@@ -11,7 +11,9 @@ export declare global {
         type: 'PRIMARY' | 'SECONDARY',
         meal: MealType
       };
-      
+      mealForm: {
+        meal?: MealType
+      }
     }
   }
 }
