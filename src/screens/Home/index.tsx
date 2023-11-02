@@ -9,7 +9,7 @@ import { MealType } from '../../components/Meal/meal.type'
 export function Home () {
   const { navigate } = useNavigation()
 
-  const type = 'PRIMARY'
+  const type = 'SECONDARY'
   const data = new Map<string, MealType[]>() // Map { 'DD.MM.YYY': [ { ... }, ... ] }
   
   function handleOpenDetails () {
@@ -23,7 +23,7 @@ export function Home () {
 
       <Subtitle>Refeições</Subtitle>
 
-      <ButtonIcon title='Nova Refeição' type={type} icon='add' />
+      <ButtonIcon title='Nova Refeição' type={"PRIMARY"} icon='add' />
 
       <MealList meals={data} />
     </Container> 
