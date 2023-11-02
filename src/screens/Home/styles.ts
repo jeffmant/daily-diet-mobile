@@ -15,6 +15,7 @@ export const Title = styled.Text`
 `;
 
 export const Subtitle = styled.Text`
+  margin: 8px 0px;
   ${({ theme }) => css`
     font-family: ${theme.FONT_FAMILY.bold};
     font-size: ${theme.FONT_SIZE.md}px;

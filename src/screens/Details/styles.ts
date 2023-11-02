@@ -8,6 +8,8 @@ type DetailsStyleProps = ViewStyle & {
 }
 
 export const Container = styled(View)<DetailsStyleProps>`
+  width: 100%;
+  height: 100%;
   background: ${({ theme, type }) => type === 'PRIMARY' ? theme.COLORS.greenLight : theme.COLORS.redLight};
 `
 
@@ -29,8 +31,9 @@ export const Title = styled.Text`
 `
 
 export const InfoContainer = styled.View`
+  width: 100%;
   flex-direction: row;
-  justify-content: center;
+  justify-content: stretch;
   align-items: center;
   gap: 12px;
 `
