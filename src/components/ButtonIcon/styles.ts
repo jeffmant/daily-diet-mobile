@@ -21,7 +21,6 @@ export const Container = styled(TouchableOpacity)<ButtonStyleProps>`
    
   min-width: 115px;
   min-height: 50px;
-  margin: 8px 0px;
   padding: 16px 24px;
 
   border-radius: 6px;

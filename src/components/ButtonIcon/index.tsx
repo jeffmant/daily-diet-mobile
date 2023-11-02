@@ -9,18 +9,20 @@ type CustomButtonProps = ButtonProps & {
   icon?: IconType,
 }
 
-const ICON_PROPS = {
-  color: '#fff',
-  size: 18
+function makeIconProps (type: ButtonStyleTypeProps) {
+  return {
+    color: type === 'PRIMARY' ? '#fff' : '#1B1D1E',
+    size: 18
+  }
 }
 
 export function ButtonIcon ({ icon, title, type, ...rest }: CustomButtonProps) {
   return (
     <Container type={type} { ...rest }>
         {icon && (
-            icon === "add" ? <Plus { ...ICON_PROPS } /> : 
-            icon === "edit" ? <PencilSimpleLine { ...ICON_PROPS } /> : 
-            icon === "delete" ? <Trash { ...ICON_PROPS } /> : null
+            icon === "add" ? <Plus { ...makeIconProps(type) } /> : 
+            icon === "edit" ? <PencilSimpleLine { ...makeIconProps(type) } /> : 
+            icon === "delete" ? <Trash { ...makeIconProps(type) } /> : null
         )}
       <TextButton type={type}>{title}</TextButton>
     </Container>
