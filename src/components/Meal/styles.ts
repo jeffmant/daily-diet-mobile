@@ -1,7 +1,7 @@
 import { View, ViewStyle } from "react-native";
 import styled, { css } from "styled-components/native";
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   width: 100%;
   padding: 14px 12px;
   margin-bottom: 8px;
