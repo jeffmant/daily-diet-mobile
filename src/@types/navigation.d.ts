@@ -1,3 +1,5 @@
+import { MealType } from "../components/Meal/meal.type";
+
 export declare global {
   namespace ReactNavigation {
     interface RootParamList {
@@ -5,6 +7,11 @@ export declare global {
       details: {
         type: 'PRIMARY' | 'SECONDARY'
       };
+      meal: {
+        type: 'PRIMARY' | 'SECONDARY',
+        meal: MealType
+      };
+      
     }
   }
 }
