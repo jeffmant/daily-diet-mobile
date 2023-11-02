@@ -12,10 +12,14 @@ export const Container = styled(View)<MealsHeaderStyleProps>`
   padding: 24px;
   flex-direction: row;
   align-items: center;
-  gap: 100px;
+  justify-content: center;
   width: 100%;
   height: 130px;
-  background-color: ${({ theme, type }) => type === 'PRIMARY' ? theme.COLORS.greenLight : theme.COLORS.redLight};
+  background-color: ${({ theme, type }) => 
+    type === 'PRIMARY' ? theme.COLORS.greenLight : 
+    type === 'SECONDARY' ? theme.COLORS.redLight : 
+    theme.COLORS.gray5 
+  };
 `
 
 export const Title = styled.Text`
@@ -26,7 +30,11 @@ export const Title = styled.Text`
   `}
 `
 
-export const BackButton = styled.TouchableOpacity``
+export const BackButton = styled.TouchableOpacity`
+  position: absolute;
+  left: 0;
+  margin-left: 24px;
+`
 
 export const Icon = styled(ArrowLeft)``
 
