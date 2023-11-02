@@ -1,16 +1,16 @@
-import { ViewProps } from "react-native";
+import { TouchableOpacityProps, ViewProps } from "react-native";
 import { 
   Container, 
   StatusIcon, 
-  Title, 
-  ViewStyleTypeProps 
+  Title,
+  TouchableStyleTypeProps, 
 } from "./styles";
 
 
-type SelectOptionProps = ViewProps & {
+type SelectOptionProps = TouchableOpacityProps & {
   title: string,
   selected: boolean,
-  type: ViewStyleTypeProps
+  type: TouchableStyleTypeProps
 }
 
 export function SelectOption ({ 

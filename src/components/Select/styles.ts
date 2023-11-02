@@ -1,14 +1,14 @@
-import { View, ViewProps } from "react-native";
+import { TouchableOpacity, TouchableOpacityProps, View, ViewProps } from "react-native";
 import styled, { css } from "styled-components/native";
 
-export type ViewStyleTypeProps = 'PRIMARY' | 'SECONDARY'
+export type TouchableStyleTypeProps = 'PRIMARY' | 'SECONDARY'
 
-type ViewStypeProps = ViewProps & {
+type TouchableStypeProps = {
   selected: boolean,
-  type: ViewStyleTypeProps
+  type: TouchableStyleTypeProps
 }
 
-export const Container = styled(View)<ViewStypeProps>`
+export const Container = styled(TouchableOpacity)<TouchableStypeProps>`
   min-width: 160px;
   min-height: 50px;
   padding: 16px;
