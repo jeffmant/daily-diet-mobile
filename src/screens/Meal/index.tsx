@@ -1,11 +1,11 @@
-import { ParamListBase, RouteProp } from "@react-navigation/native"
+import { ParamListBase, RouteProp, useNavigation } from "@react-navigation/native"
 import { Button, View, ViewProps } from "react-native"
 import { ActionContainer, Container, Content, Description, InfoContainer, InfoSection, Subtitle, Tag, TagIcon, TagText, Title } from "./styles"
 import { MealsHeader } from "../../components/MealsHeader"
 import { MealType } from "../../components/Meal/meal.type"
 import { ButtonIcon } from "../../components/ButtonIcon"
 
-type MealProps = ViewProps & {
+export type MealProps = ViewProps & {
   route?: RouteProp<ParamListBase>
 }
 
@@ -22,11 +22,16 @@ function formatDate(date: Date) {
 }
 
 export function Meal ({ route, ...rest }: MealProps) {
+  const { navigate } = useNavigation()
   const { type, meal } = route?.params as { type?: 'PRIMARY' | 'SECONDARY', meal?: MealType}
+
+  function handleEditMeal () {
+    navigate('mealForm', { meal })
+  }
 
   return (
     <Container type={type} { ...rest }>
-      <MealsHeader type={type} />
+      <MealsHeader title={'Refeição'} type={type} />
       <Content>
         <InfoContainer>
           <InfoSection>
@@ -56,7 +61,8 @@ export function Meal ({ route, ...rest }: MealProps) {
             title="Editar Refeição" 
             type="PRIMARY" 
             icon='edit' 
-            />
+            onPress={handleEditMeal}
+          />
           <ButtonIcon 
             title="Excluir Refeição" 
             type="SECONDARY"

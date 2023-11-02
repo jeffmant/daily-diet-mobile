@@ -25,6 +25,11 @@ export function Home () {
   function handleOpenDetails () {
     navigate('details', { type })
   }
+
+  function handleNewMeal () {
+    navigate('mealForm', { })
+  }
+
   return (
     <Container>
       <Header />
@@ -33,7 +38,12 @@ export function Home () {
 
       <Subtitle>Refeições</Subtitle>
 
-      <ButtonIcon title='Nova Refeição' type={"PRIMARY"} icon='add' />
+      <ButtonIcon 
+        title='Nova Refeição'
+        onPress={handleNewMeal} 
+        type={"PRIMARY"} 
+        icon='add'
+      />
 
       <MealList meals={data} />
     </Container> 
