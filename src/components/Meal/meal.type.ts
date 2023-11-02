@@ -3,5 +3,5 @@ export type MealType = {
   title: string,
   date: string,
   status: boolean
-  description?: string,
+  description: string,
 }
