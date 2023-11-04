@@ -1,10 +1,10 @@
 import { View, ViewStyle } from "react-native";
-import styled, { css } from "styled-components/native";
+import styled, { css   } from "styled-components/native";
 
 export type DetailsStyleTypeProps = 'PRIMARY' | 'SECONDARY'
 
 type MealStyleProps = ViewStyle & {
-  type?: DetailsStyleTypeProps
+  type?: DetailsStyleTypeProps,
 }
 
 export const Container = styled(View)<MealStyleProps>`
@@ -13,14 +13,18 @@ export const Container = styled(View)<MealStyleProps>`
   background: ${({ theme, type }) => type === 'PRIMARY' ? theme.COLORS.greenLight : type === 'SECONDARY' ? theme.COLORS.redLight : theme.COLORS.gray5};
 `
 
-export const Content = styled.View`
+type ContentStyle = ViewStyle & {
+  borred: boolean
+}
+
+export const Content = styled(View)<ContentStyle>`
   padding: 24px;
   height: 85%;
   border-radius: 20px;
 
   justify-content: space-between;
 
-  background: ${({ theme }) => theme.COLORS.gray7};
+  background: ${({ theme, borred }) => borred ? '#00000040' : theme.COLORS.gray7};
 `
 
 export const InfoSection = styled.View`
