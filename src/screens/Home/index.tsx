@@ -3,24 +3,38 @@ import { Header } from '../../components/Header'
 import { Percent } from '../../components/Percent'
 import { ButtonIcon } from '../../components/ButtonIcon' 
 import { MealList } from '../../components/MealList'
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { getAllMeals } from '../../storage/meal/getAllMeals'
+import { useCallback, useEffect, useState } from 'react'
 import { MealType } from '../../components/Meal/meal.type'
+import { AppError } from '../../utils/appError.util'
+import { Loading } from '../../components/Loading'
+import { Alert } from 'react-native'
 
 export function Home () {
   const { navigate } = useNavigation()
 
-  const type = 'PRIMARY'
-  const data = new Map<string, MealType[]>() // Map { 'DD.MM.YYY': [ { ... }, ... ] }
+  const [meals, setMeals] = useState<Map<string, MealType[]>>(new Map<string, MealType[]>())
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
-  data.set('02.11.2023', [
-    { 
-      id: Math.floor(Math.random() * 100000).toString(),
-      title: 'Alcatra Acebolada',
-      description: '3 bifes do miolo de alcatra com sal e cebola',
-      date: new Date().toISOString(),
-      status: true
+  const type = 'PRIMARY'
+
+  async function fetchMeals () {
+    setIsLoading(true)
+    try {
+      const foundMeals = await getAllMeals()
+
+      setMeals(foundMeals)
+    } catch (error) {
+      if (error instanceof AppError) {
+        Alert.alert('Ops!', error.message)
+      } else {
+        Alert.alert('Ops!', 'Algo de errado não está certo')
+      }
+    } finally {
+      setIsLoading(false)
     }
-  ])
+  } 
   
   function handleOpenDetails () {
     navigate('details', { type })
@@ -29,6 +43,10 @@ export function Home () {
   function handleNewMeal () {
     navigate('mealForm', { })
   }
+
+  useFocusEffect(useCallback(() => {
+    fetchMeals()
+  }, []))
 
   return (
     <Container>
@@ -45,7 +63,11 @@ export function Home () {
         icon='add'
       />
 
-      <MealList meals={data} />
+    {isLoading ? (
+      <Loading />
+    ) : (
+      <MealList meals={meals} />
+    )}
     </Container> 
   )
 }
