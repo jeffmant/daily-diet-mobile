@@ -39,7 +39,7 @@ export function MealForm ({ route, ...rest }: MealProps ) {
       }
 
       await createMeal(mealDTO)
-      navigate('home')
+      navigate('feedback', { status })
       
     } catch (error) {
       if (error instanceof AppError) {

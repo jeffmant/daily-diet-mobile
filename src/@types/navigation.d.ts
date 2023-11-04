@@ -13,6 +13,9 @@ export declare global {
       };
       mealForm: {
         meal?: MealType
+      },
+      feedback: {
+       status: boolean
       }
     }
   }
