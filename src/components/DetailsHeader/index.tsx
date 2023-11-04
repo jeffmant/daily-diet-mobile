@@ -4,10 +4,11 @@ import { useTheme } from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 
 type DetailsHeaderProps = ViewProps & {
-  type?: DetailsHeaderStyleTypeProps
+  type?: DetailsHeaderStyleTypeProps,
+  value: number
 }
 
-export function DetailsHeader ({ type, ...rest }: DetailsHeaderProps) {
+export function DetailsHeader ({ type, value, ...rest }: DetailsHeaderProps) {
   const { navigate } = useNavigation()
   const { COLORS } = useTheme()
   return(
@@ -15,7 +16,7 @@ export function DetailsHeader ({ type, ...rest }: DetailsHeaderProps) {
       <BackButton onPress={() => navigate('home')}>
         <Icon color={type === 'PRIMARY' ? COLORS.greenDark : COLORS.redDark} />
       </BackButton>
-      <Title>90,86%</Title>
+      <Title>{value}%</Title>
       <Subtitle>das refeições dentro da dieta</Subtitle>
     </Container>
   )

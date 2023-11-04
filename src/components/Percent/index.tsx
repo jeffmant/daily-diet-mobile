@@ -3,14 +3,15 @@ import { Container, Icon, PercentStyleTypeProps, Subtitle, Title } from "./style
 import { useTheme } from "styled-components/native";
 
 type PercentProps = TouchableOpacityProps & {
-  type: PercentStyleTypeProps
+  type: PercentStyleTypeProps,
+  value: number
 }
 
-export function Percent ({ type, onPress, ...rest }: PercentProps) {
+export function Percent ({ type, value, onPress, ...rest }: PercentProps) {
   const { COLORS } = useTheme()
   return (
     <Container type={type} onPress={onPress} {...rest}>
-        <Title>90,86%</Title>
+        <Title>{ value }%</Title>
         <Subtitle>das refeições dentro da dieta</Subtitle>
       <Icon color={type === 'PRIMARY' ? COLORS.greenDark : COLORS.redDark} />
     </Container>

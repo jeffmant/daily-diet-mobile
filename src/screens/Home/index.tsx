@@ -10,12 +10,14 @@ import { MealType } from '../../components/Meal/meal.type'
 import { AppError } from '../../utils/appError.util'
 import { Loading } from '../../components/Loading'
 import { Alert } from 'react-native'
+import { getMealStatistcs } from '../../storage/meal/statistcs'
 
 export function Home () {
   const { navigate } = useNavigation()
 
   const [meals, setMeals] = useState<Map<string, MealType[]>>(new Map<string, MealType[]>())
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [percentTotalInside, setPercentTotalInside] = useState(0)
 
   const type = 'PRIMARY'
 
@@ -34,7 +36,16 @@ export function Home () {
     } finally {
       setIsLoading(false)
     }
-  } 
+  }
+  
+  async function fetchStatistcs () {
+    try {
+      const { percentTotalInside } = await getMealStatistcs()
+      setPercentTotalInside(percentTotalInside)
+    } catch (error) {
+
+    }
+  }
   
   function handleOpenDetails () {
     navigate('details', { type })
@@ -46,13 +57,14 @@ export function Home () {
 
   useFocusEffect(useCallback(() => {
     fetchMeals()
+    fetchStatistcs()
   }, []))
 
   return (
     <Container>
       <Header />
 
-      <Percent type={type} onPress={handleOpenDetails} />
+      <Percent type={type} value={percentTotalInside} onPress={handleOpenDetails} />
 
       <Subtitle>Refeições</Subtitle>
 
