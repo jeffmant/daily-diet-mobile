@@ -30,7 +30,7 @@ export async function getAllMeals (): Promise<Map<string, MealType[]>> {
 
     const mappedMeals = mapMeals(parsedMeals)
 
-    return mappedMeals
+    return new Map<string, MealType[]>([...mappedMeals.entries()].sort().reverse())
     
   } catch (error) {
     throw error
