@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Alert, View } from "react-native";
 import { MealType } from "../../components/Meal/meal.type";
 import { MealsHeader } from "../../components/MealsHeader";
 import { MealProps } from "../Meal";
@@ -8,9 +8,16 @@ import { Input } from "../../components/Input";
 import { ButtonIcon } from "../../components/ButtonIcon";
 import { SelectOption } from "../../components/Select";
 import { useState } from "react";
-import { formatDate } from "../../utils/date.util";
+import { MaskInput } from "../../components/Input/MaskInput";
+import { Masks } from 'react-native-mask-input'
+import { AppError } from "../../utils/appError.util";
+import { createMeal } from "../../storage/meal/createMeal";
+import { MealDTO } from "../../storage/meal/meal.dto";
+import { useNavigation } from "@react-navigation/native";
 
 export function MealForm ({ route, ...rest }: MealProps ) {
+  const { navigate } = useNavigation()
+
   const { meal } = route?.params as { meal?: MealType}
 
   const [name, setName] = useState<string>(meal?.title || '')
@@ -18,6 +25,30 @@ export function MealForm ({ route, ...rest }: MealProps ) {
   const [date, setDate] = useState<string>(meal?.date || '')
   const [time, setTime] = useState<string>(meal?.date || '')
   const [status, setStatus] = useState<boolean>(meal?.status || true)
+
+  async function handleSubmit () {
+    const splitedDate = date.split('/')
+    const splitedTime = time.split(':')
+    
+    try {
+      const mealDTO: MealDTO = {
+        title: name,
+        description: description,
+        status,
+        date: new Date(`${splitedDate[2]}-${splitedDate[1]}-${splitedDate[0]}T${splitedTime[0]}:${splitedTime[1]}:00`).toISOString()
+      }
+
+      await createMeal(mealDTO)
+      navigate('home')
+      
+    } catch (error) {
+      if (error instanceof AppError) {
+        Alert.alert('Ops!', error.message)
+      } else {
+        Alert.alert('Ops!', 'Não foi possível cadastrar refeição')
+      }
+    }
+  }
 
   return (
     <Container { ...rest }>
@@ -31,14 +62,12 @@ export function MealForm ({ route, ...rest }: MealProps ) {
             <Input
               value={name}
               onChangeText={setName}
-              filled={false} 
             />
           </FormSection>
 
           <FormSection>
             <Label>Descrição</Label>
             <Input 
-              filled={false}
               value={description}
               onChangeText={setDescription}
               multiline
@@ -49,18 +78,20 @@ export function MealForm ({ route, ...rest }: MealProps ) {
           <View style={{ flexDirection: 'row', gap: 8 }}>
             <FormSection style={{ width: '50%' }}>
               <Label>Data</Label>
-              <Input
-                filled={false}
+              <MaskInput
                 value={date}
                 onChangeText={setDate}
+                mask={Masks.DATE_DDMMYYYY}
+                keyboardType="number-pad"
               />
             </FormSection>
             <FormSection style={{ width: '50%' }}>
               <Label>Hora</Label>
-              <Input
+              <MaskInput
                 value={time}
                 onChangeText={setTime}
-                filled={false}
+                mask={[ /\d/, /\d/, ":", /\d/, /\d/ ]}
+                keyboardType="number-pad"
               />
             </FormSection>
           </View>
@@ -90,7 +121,8 @@ export function MealForm ({ route, ...rest }: MealProps ) {
               'Salvar alterações' : 
               'Cadastrar Refeição' 
             } 
-            type={'PRIMARY'} 
+            type={'PRIMARY'}
+            onPress={handleSubmit}
           />
         </ActionContainer>
       </Content>
