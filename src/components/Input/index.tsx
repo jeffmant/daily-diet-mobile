@@ -1,13 +1,17 @@
 import { TextInputProps } from "react-native";
-import { Container, InputStyleFilledProps, InputText } from "./styles";
+import { Container, InputText } from "./styles";
+import { useState } from "react";
 
-type InputProps = TextInputProps & {
-  filled: boolean
-};
-
-export function Input ({ value, filled , ...rest }: InputProps ) {
+export function Input ({ value, ...rest }: TextInputProps ) {
+  const [ filled, setFilled ] = useState(false)
+  
   return (
-    <Container filled={filled} { ...rest }>
+    <Container
+      onFocus={() => setFilled(true)}
+      onBlur={() => setFilled(false)} 
+      filled={filled} 
+      { ...rest }
+    >
       <InputText>{value}</InputText>
     </Container>
   )
